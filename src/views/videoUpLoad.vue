@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { showToast, showLoadingToast, closeToast } from 'vant'
 import axios from 'axios'
 
@@ -105,7 +105,9 @@ const triggerFileInput = () => {
 }
 
 // 导出函数供外部调用（用于从其他页面直接触发文件选择）
-window.triggerVideoUploadFileSelect = triggerFileInput
+onMounted(() => {
+  window.triggerVideoUploadFileSelect = triggerFileInput
+})
 
 // 处理文件选择事件 - 异步函数，包含完整验证流程
 const handleFileChange = async (event) => {
